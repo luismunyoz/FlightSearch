@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GeektasticTestApp</string>
+    <string name="sort_and_filters"><![CDATA[SORT & FILTERS]]></string>
+    <string name="direct">Direct</string>
+    <string name="n_scales">%d scales</string>
+    <string name="via_agent">via %s</string>
+    <string name="search">Search</string>
+    <string name="n_results">%d of - results</string>
+</resources>
