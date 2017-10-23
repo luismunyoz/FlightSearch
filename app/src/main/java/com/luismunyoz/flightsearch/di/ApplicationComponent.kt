@@ -1,5 +1,7 @@
 package com.luismunyoz.flightsearch.di
 
+import com.luismunyoz.flightsearch.di.subcomponent.init.InitActivityComponent
+import com.luismunyoz.flightsearch.di.subcomponent.init.InitActivityModule
 import com.luismunyoz.flightsearch.di.subcomponent.main.MainActivityComponent
 import com.luismunyoz.flightsearch.di.subcomponent.main.MainActivityModule
 import dagger.Component
@@ -15,4 +17,6 @@ import javax.inject.Singleton
 interface ApplicationComponent {
 
     fun plus(module: MainActivityModule): MainActivityComponent
+
+    fun plus(module: InitActivityModule) : InitActivityComponent
 }

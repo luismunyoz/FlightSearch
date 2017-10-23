@@ -1,7 +1,8 @@
 package com.luismunyoz.flightsearch.di
 
 import com.luismunyoz.flightsearch.domain.interactor.GetFlightPricesInteractor
-import com.luismunyoz.flightsearch.domain.repository.FlightPricesRepository
+import com.luismunyoz.flightsearch.domain.interactor.SearchPlacesInteractor
+import com.luismunyoz.flightsearch.domain.repository.FlightSearchRepository
 import dagger.Module
 import dagger.Provides
 
@@ -9,6 +10,10 @@ import dagger.Provides
 class DomainModule {
 
     @Provides
-    fun provideFlightPricesInteractor(flightPricesRepository: FlightPricesRepository)
-            = GetFlightPricesInteractor(flightPricesRepository)
+    fun provideFlightPricesInteractor(flightSearchRepository: FlightSearchRepository)
+            = GetFlightPricesInteractor(flightSearchRepository)
+
+    @Provides
+    fun provideSearchPlacesInteractor(flightSearchRepository: FlightSearchRepository)
+            = SearchPlacesInteractor(flightSearchRepository)
 }

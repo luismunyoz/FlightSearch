@@ -2,6 +2,7 @@ package com.luismunyoz.flightsearch.data.skyscanner
 
 import com.luismunyoz.flightsearch.data.skyscanner.model.SkyscannerResponse
 import com.luismunyoz.flightsearch.data.skyscanner.requests.FlightPricesSessionResponse
+import com.luismunyoz.flightsearch.data.skyscanner.requests.PlacesResponse
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -31,4 +32,11 @@ interface SkyscannerAPIService {
                         @Query("apiKey") apiKey : String,
                         @Query("pageIndex") pageIndex : Int = 0,
                         @Query("pageSize") pageSize : Int = 10): Call<SkyscannerResponse>
+
+    @GET("autosuggest/v1.0/{country}/{country}/{locale}")
+    fun getPlaces(@Path("country") market : String,
+                  @Path("currency") currency: String,
+                  @Path("locale") locale: String,
+                  @Query("query") query: String,
+                  @Query("apiKey") apiKey: String) : Call<PlacesResponse>
 }

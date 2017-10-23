@@ -12,5 +12,5 @@ abstract class ActivityModule(protected val activity: AppCompatActivity) {
     fun provideActivity(): AppCompatActivity = activity
 
     @Provides @ActivityScope
-    fun provideActiviyContext(): Context = activity.baseContext
+    fun provideActivityContext(): Context = activity.baseContext
 }

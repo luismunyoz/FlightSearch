@@ -2,8 +2,10 @@ package com.luismunyoz.flightsearch.data
 
 import com.luismunyoz.flightsearch.BuildConfig
 import com.luismunyoz.flightsearch.data.mapper.FlightPricesMapper
+import com.luismunyoz.flightsearch.data.mapper.SearchPlacesMapper
 import com.luismunyoz.flightsearch.data.skyscanner.SkyscannerAPIService
 import com.luismunyoz.flightsearch.domain.entity.FlightPrices
+import com.luismunyoz.flightsearch.domain.entity.SearchPlace
 import com.luismunyoz.flightsearch.repository.dataset.FlightPricesDataSet
 
 /**
@@ -21,6 +23,12 @@ class CloudFlightPricesDataSet(val skyscannerAPIService: SkyscannerAPIService, v
         return skyscannerAPIService.getFlightPrices(finalLocation, apiKey, pageIndex, pageSize).unwrapCall {
             FlightPricesMapper().transform(this)
         } ?: throw IllegalStateException()
+    }
+
+    override fun searchPlaces(country: String, currency: String, locale: String, query: String) : List<SearchPlace> {
+        return skyscannerAPIService.getPlaces(country, currency, locale, query, apiKey).unwrapCall {
+            SearchPlacesMapper().transform(this.places)
+        } ?: emptyList()
     }
 
 }
