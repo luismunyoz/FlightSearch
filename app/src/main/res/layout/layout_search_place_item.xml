@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="item"
+            type="com.luismunyoz.flightsearch.ui.entity.UISearchPlace"/>
+
+        <variable
+            name="callback"
+            type="com.luismunyoz.flightsearch.ui.screens.search_places.adapter.UISearchPlacesAdapter.Callback"/>
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground">
+
+        <TextView
+            android:id="@+id/it_outbound_arrivaldep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="sans-serif-medium"
+            android:textStyle="normal"
+            android:textColor="#544c63"
+            tools:text="Place Name"
+            android:text="@{item.placeName}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/it_outbound_icon"
+            android:layout_margin="@dimen/double_margin" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/black_12"/>
+
+    </LinearLayout>
+</layout>

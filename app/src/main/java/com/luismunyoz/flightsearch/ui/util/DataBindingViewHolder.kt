@@ -17,7 +17,7 @@ class DataBindingViewHolder(val binding: ViewDataBinding) : RecyclerView.ViewHol
 
     fun bind(item: Any, listener: Any){
         binding.setVariable(BR.item, item)
-        //binding.setVariable(BR.listener, listener)
+        binding.setVariable(BR.callback, listener)
         binding.executePendingBindings()
     }
 

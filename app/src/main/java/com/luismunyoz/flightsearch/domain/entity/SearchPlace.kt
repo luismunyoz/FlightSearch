@@ -1,6 +1,7 @@
 package com.luismunyoz.flightsearch.domain.entity
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * Created by llco on 20/10/2017.
@@ -12,4 +13,4 @@ class SearchPlace(
         val regionId : String,
         val cityId : String,
         val countryName : String
-)
+) : Serializable

@@ -8,19 +8,18 @@ import com.luismunyoz.flightsearch.di.subcomponent.init.InitActivityModule
 import com.luismunyoz.flightsearch.ui.common.BaseActivity
 import com.luismunyoz.flightsearch.ui.entity.UIFlightPrices
 import com.luismunyoz.flightsearch.ui.entity.UISearchPlace
+import com.luismunyoz.flightsearch.ui.screens.init.adapter.AutoCompletePlacesAdapter
 
 /**
  * Created by llco on 23/10/2017.
  */
 class InitActivity : BaseActivity(), InitContract.View {
 
-    lateinit var autoCompleteTextView : AutoCompleteTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_init)
 
-        autoCompleteTextView = findViewById(R.id.init_autocomplete)
     }
 
     override fun injectDependencies(applicationComponent: ApplicationComponent) {
@@ -28,6 +27,7 @@ class InitActivity : BaseActivity(), InitContract.View {
     }
 
     override fun populateSearchResults(results: List<UISearchPlace>) {
+
     }
 
 }
