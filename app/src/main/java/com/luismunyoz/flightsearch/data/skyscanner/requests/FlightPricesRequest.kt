@@ -18,5 +18,5 @@ data class FlightPricesRequest(
         var adults : Int = 1,
         var children : Int = 0,
         var infants : Int = 0,
-        var apikey : String = BuildConfig.APIKEY
+        var apikey : String = ""
 )

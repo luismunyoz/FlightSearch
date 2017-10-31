@@ -22,14 +22,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "BASE_URL", "\"http://partners.api.skyscanner.net\""
-            buildConfigField "String", "APIKEY", "\"ss630745725358065467897349852985\""
         }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             buildConfigField "String", "BASE_URL", "\"http://partners.api.skyscanner.net\""
-            buildConfigField "String", "APIKEY", "\"ss630745725358065467897349852985\""
         }
     }
     dataBinding {

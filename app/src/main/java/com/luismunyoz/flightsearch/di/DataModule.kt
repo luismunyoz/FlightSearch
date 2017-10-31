@@ -2,6 +2,7 @@ package com.luismunyoz.flightsearch.di
 
 import android.content.Context
 import com.luismunyoz.flightsearch.BuildConfig
+import com.luismunyoz.flightsearch.R
 import com.luismunyoz.flightsearch.data.skyscanner.SkyscannerAPIService
 import com.luismunyoz.flightsearch.di.qualifier.ApiKey
 import dagger.Module
@@ -22,7 +23,7 @@ class DataModule {
     fun provideCache(@ApplicationQualifier context: Context) = Cache(context.cacheDir, 10 * 1024 * 1024.toLong())
 
     @Provides @Singleton @ApiKey
-    fun provideApiKey(@ApplicationQualifier context: Context): String = BuildConfig.APIKEY
+    fun provideApiKey(@ApplicationQualifier context: Context): String = context.getString(R.string.skyscanner_api_key)
 
     @Provides @Singleton
     fun provideOkHttpClient(cache: Cache): OkHttpClient =
