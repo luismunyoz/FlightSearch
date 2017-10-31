@@ -30,7 +30,7 @@ class InitActivityModule(activity: InitActivity) : ActivityModule(activity) {
 
     @Provides
     @ActivityScope
-    fun provideInitPresenter(view: InitContract.View, bus: Bus, searchPlacesInteractor: SearchPlacesInteractor, interactorExecutor: InteractorExecutor, uiSearchPlaceMapper: UISearchPlaceMapper) =
-            InitPresenter(view, bus, searchPlacesInteractor, interactorExecutor, uiSearchPlaceMapper)
+    fun provideInitPresenter(view: InitContract.View, bus: Bus, uiSearchPlaceMapper: UISearchPlaceMapper) =
+            InitPresenter(view, bus, uiSearchPlaceMapper)
 
 }

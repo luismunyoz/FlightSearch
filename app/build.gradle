@@ -1,14 +1,14 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
-        applicationId "com.luismunyoz.geektastictestapp"
+        applicationId "com.luismunyoz.flightsearch"
         minSdkVersion 19
         targetSdkVersion 26
         versionCode 1

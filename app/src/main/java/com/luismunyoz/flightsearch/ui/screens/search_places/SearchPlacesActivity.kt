@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.Toolbar
 import android.widget.Button
 import android.widget.EditText
 import com.luismunyoz.flightsearch.R
@@ -29,6 +30,7 @@ class SearchPlacesActivity : BaseActivity(), SearchPlacesContract.View, UISearch
     lateinit var list : RecyclerView
     lateinit var searchBox : EditText
     lateinit var searchBtn : Button
+    lateinit var toolbar : Toolbar
 
     lateinit var adapter : UISearchPlacesAdapter
 
@@ -42,6 +44,12 @@ class SearchPlacesActivity : BaseActivity(), SearchPlacesContract.View, UISearch
         list = findViewById(R.id.search_places_list)
         searchBox = findViewById(R.id.search_places_box)
         searchBtn = findViewById(R.id.search_places_search)
+        toolbar = findViewById(R.id.main_toolbar)
+
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
         searchBtn.setOnClickListener { presenter.onSearchPressed(searchBox.text.toString()) }
     }
 
@@ -63,8 +71,22 @@ class SearchPlacesActivity : BaseActivity(), SearchPlacesContract.View, UISearch
         finish()
     }
 
+    override fun onResume() {
+        super.onResume()
+        presenter.onResume()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        presenter.onPause()
+    }
+
     override fun onItemClick(place: UISearchPlace) {
         presenter.onPlaceSelected(place)
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
 }

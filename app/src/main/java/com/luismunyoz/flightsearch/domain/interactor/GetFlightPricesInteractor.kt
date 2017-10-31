@@ -11,9 +11,9 @@ import com.luismunyoz.flightsearch.domain.repository.FlightSearchRepository
 class GetFlightPricesInteractor(val flightSearchRepository: FlightSearchRepository) : Interactor {
 
     var cabinClass : String = "Economy"
-    var country : String = "UK"
-    var currency : String = "GBP"
-    var locale : String = "en-GB"
+    var country : String = "ES"
+    var currency : String = "EUR"
+    var locale : String = "es-ES"
     var locationSchema : String = "sky"
     var originPlace : String = "EDI-sky"
     var destinationPlace : String = "LOND-sky"

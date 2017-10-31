@@ -26,7 +26,8 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/main_toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    app:title="@string/search_locations"/>
             </android.support.design.widget.AppBarLayout>
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
@@ -42,13 +43,12 @@
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/triple_margin">
-
+                android:layout_margin="@dimen/double_margin">
                 <EditText
                     android:id="@+id/search_places_box"
                     android:layout_width="0dp"
                     android:layout_height="46dp"
-                    android:hint="@string/search_dot"
+                    android:hint="@string/country_city_or_airport"
                     android:inputType="text"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,9 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginStart="@dimen/triple_margin"/>
+                    android:layout_marginStart="@dimen/double_margin"
+                    android:theme="@style/BlueButton"
+                    android:textColor="@color/white"/>
             </android.support.constraint.ConstraintLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/search_places_list"

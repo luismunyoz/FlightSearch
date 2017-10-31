@@ -33,7 +33,7 @@ interface SkyscannerAPIService {
                         @Query("pageIndex") pageIndex : Int = 0,
                         @Query("pageSize") pageSize : Int = 10): Call<SkyscannerResponse>
 
-    @GET("autosuggest/v1.0/{country}/{country}/{locale}")
+    @GET("autosuggest/v1.0/{country}/{currency}/{locale}")
     fun getPlaces(@Path("country") market : String,
                   @Path("currency") currency: String,
                   @Path("locale") locale: String,

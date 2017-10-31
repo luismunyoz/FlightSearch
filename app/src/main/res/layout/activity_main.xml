@@ -65,15 +65,44 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="@dimen/double_margin"/>
+                android:layout_marginEnd="@dimen/double_margin"
+                android:focusable="true"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
         </android.support.constraint.ConstraintLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_results_list"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:scrollbars="none"/>
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/main_results_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"/>
+        <ProgressBar
+            android:id="@+id/main_results_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/super_margin"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/main_results_no_results"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="10sp"
+            android:textColor="#544c63"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:text="@string/no_results_found"
+            android:layout_margin="@dimen/super_margin"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"/>
+    </FrameLayout>
+
 
 </android.support.design.widget.CoordinatorLayout>

@@ -5,22 +5,35 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.Menu
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.luismunyoz.flightsearch.R
 import com.luismunyoz.flightsearch.di.ApplicationComponent
 import com.luismunyoz.flightsearch.di.subcomponent.main.MainActivityModule
+import com.luismunyoz.flightsearch.domain.entity.SearchPlace
 import com.luismunyoz.flightsearch.ui.common.BaseActivity
 import com.luismunyoz.flightsearch.ui.entity.UIFlightPrices
 import com.luismunyoz.flightsearch.ui.entity.UIItinerary
 import com.luismunyoz.flightsearch.ui.screens.main.adapter.UIItinerariesAdapter
 import com.luismunyoz.flightsearch.ui.util.EndlessRecyclerViewScrollListener
+import java.util.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity(), MainContract.View, UIItinerariesAdapter.Callback {
+    companion object {
+        const val ORIGIN = "origin"
+        const val DESTINATION = "destination"
+        const val DEPART = "depart"
+        const val RETURN = "return"
+    }
+
     lateinit var list : RecyclerView
     lateinit var adapter : UIItinerariesAdapter
     lateinit var toolbar : Toolbar
     lateinit var resultsTV : TextView
+    lateinit var loading : ProgressBar
+    lateinit var noResults : TextView
 
     @Inject
     lateinit var presenter : MainPresenter
@@ -32,9 +45,12 @@ class MainActivity : BaseActivity(), MainContract.View, UIItinerariesAdapter.Cal
         list = findViewById(R.id.main_results_list)
         toolbar = findViewById(R.id.main_toolbar)
         resultsTV = findViewById(R.id.main_results_number)
+        loading = findViewById(R.id.main_results_loading)
+        noResults = findViewById(R.id.main_results_no_results)
 
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -83,4 +99,26 @@ class MainActivity : BaseActivity(), MainContract.View, UIItinerariesAdapter.Cal
 
         resultsTV.text = getString(R.string.n_results).format(adapter.itemCount)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
+
+    override fun getOriginPlace(): SearchPlace = intent.getSerializableExtra(ORIGIN) as SearchPlace
+
+    override fun getDestinationPlace(): SearchPlace = intent.getSerializableExtra(DESTINATION) as SearchPlace
+
+    override fun getDepartureDate(): Calendar = intent.getSerializableExtra(DEPART) as Calendar
+
+    override fun getReturnDate(): Calendar = intent.getSerializableExtra(RETURN) as Calendar
+
+    override fun showLoader(show: Boolean) {
+        loading.visibility = if(show) View.VISIBLE else View.GONE
+    }
+
+    override fun showNoResults(show: Boolean) {
+        noResults.visibility = if(show) View.VISIBLE else View.GONE
+    }
+
 }

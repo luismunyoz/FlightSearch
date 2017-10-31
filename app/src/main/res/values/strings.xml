@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GeektasticTestApp</string>
+    <string name="app_name">Flight Search</string>
     <string name="sort_and_filters"><![CDATA[SORT & FILTERS]]></string>
     <string name="direct">Direct</string>
     <string name="n_scales">%d scales</string>
@@ -9,4 +9,14 @@
     <string name="search_dot">Search…</string>
     <string name="origin">Origin</string>
     <string name="destination">Destination</string>
+    <string name="flight_search">Flight search</string>
+    <string name="countries_cities_or_airports">Countries, cities or airports</string>
+    <string name="flight_dates">Depart / Return</string>
+    <string name="departure_date">Depart</string>
+    <string name="arrival_date">Return</string>
+    <string name="search_flights">Search flights</string>
+    <string name="search_locations">Search locations</string>
+    <string name="country_city_or_airport">Country, city or airport</string>
+    <string name="return_date_after">Return date must be after depart date</string>
+    <string name="no_results_found">No results found</string>
 </resources>

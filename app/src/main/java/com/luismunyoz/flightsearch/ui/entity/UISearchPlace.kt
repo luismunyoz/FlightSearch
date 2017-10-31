@@ -7,4 +7,6 @@ class UISearchPlace(
         val placeId : String,
         val placeName : String,
         val countryName : String
-)
+) {
+    fun name() = "$placeName, $countryName"
+}

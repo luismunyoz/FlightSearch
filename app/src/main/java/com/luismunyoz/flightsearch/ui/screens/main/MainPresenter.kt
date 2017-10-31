@@ -6,6 +6,7 @@ import com.luismunyoz.flightsearch.domain.interactor.base.Bus
 import com.luismunyoz.flightsearch.domain.interactor.base.InteractorExecutor
 import com.luismunyoz.flightsearch.domain.interactor.event.FlightPricesEvent
 import com.luismunyoz.flightsearch.ui.entity.mapper.UIFlightPricesMapper
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -28,26 +29,30 @@ class MainPresenter(val view: MainContract.View,
 
     fun loadFlightPrices(){
 
-        val calendar : Calendar = Calendar.getInstance()
-        while (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY) {
-            calendar.add(Calendar.DATE, 1)
-        }
+        view.showLoader(true)
 
-        var formatter = SimpleDateFormat("yyyy-MM-dd")
-        val outboundDate = calendar.time
-        calendar.add(Calendar.DATE, 1)
-        val inboundDate = calendar.time
+        val apiFormatter = SimpleDateFormat("yyyy-MM-dd")
+        val outboundDate = view.getDepartureDate().time
+        val inboundDate = view.getReturnDate().time
+        val originPlace = view.getOriginPlace()
+        val destinationPlace = view.getDestinationPlace()
 
-        getFlightPricesInteractor.outboundDate = formatter.format(outboundDate)
-        getFlightPricesInteractor.inboundDate = formatter.format(inboundDate)
+        getFlightPricesInteractor.outboundDate = apiFormatter.format(outboundDate)
+        getFlightPricesInteractor.inboundDate = apiFormatter.format(inboundDate)
+        getFlightPricesInteractor.originPlace = originPlace.placeId
+        getFlightPricesInteractor.destinationPlace = destinationPlace.placeId
 
         interactorExecutor.execute(getFlightPricesInteractor)
 
-        formatter = SimpleDateFormat("dd MMM")
-        view.setTitleAndSubtitle("London - Edinburgh", "${formatter.format(outboundDate)} - ${formatter.format(inboundDate)}, ${getFlightPricesInteractor.adults} adults, ${getFlightPricesInteractor.cabinClass}")
+        val formatter = SimpleDateFormat("dd MMM")
+        view.setTitleAndSubtitle("${originPlace.placeName} - ${destinationPlace.placeName}", "${formatter.format(outboundDate)} - ${formatter.format(inboundDate)}, ${getFlightPricesInteractor.adults} adults, ${getFlightPricesInteractor.cabinClass}")
+
     }
 
     fun onEvent(event: FlightPricesEvent) {
+
+        view.showLoader(false)
+
         event.flightPrices?.let {
             if(flightPrices == null) {
                 this.flightPrices = event.flightPrices
@@ -56,6 +61,10 @@ class MainPresenter(val view: MainContract.View,
                 flightPrices?.itineraries?.plus(event.flightPrices.itineraries)
                 view.onMoreItinerariesLoaded(uiFlightPricesMapper.transform(event.flightPrices).itineraries)
             }
+        }
+
+        if(event.flightPrices == null){
+            view.showNoResults(true)
         }
     }
 
